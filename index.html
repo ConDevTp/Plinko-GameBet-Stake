@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>Plinko</title>
+    <!-- Matter.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.min.css" />
+    <!-- Font -->
+    <link rel="stylesheet" href="./assets/css/font.css" />
+    <!-- FontAwesome -->
+
+    <link
+      rel="stylesheet"
+      href="./assets/font/fontawesome-free-5.15.4-web/css/all.min.css"
+    />
+    <!-- Custom -->
+    <link rel="stylesheet" href="./assets/css/index.css" />
+  </head>
+  <body class="position-relative d-flex flex-lg-row-reverse">
+    <div class="history m-hide" id="m-con-history">
+      <div class="d-flex justify-content-between align-items-center d-lg-none">
+        <h3>History</h3>
+        <i
+          class="fa fa-window-close coloseIconHistory"
+          onclick="HideHistory()"
+        ></i>
+      </div>
+      <h3 class="d-none d-lg-flex">History</h3>
+      <div id="historyList"></div>
+    </div>
+
+    <section class="m-con d-flex justify-content-between align-items-start">
+      <div
+        class="container d-flex justify-content-between align-items-center flex-column flex-lg-row"
+      >
+        <div
+          class="h-100 w-100 d-flex justify-content-center align-items-center"
+          id="m-con-p"
+        >
+          <div class="mrecent" id="history"></div>
+          <div
+            class="game-card d-flex justify-content-center h-100"
+            style="aspect-ratio: 760 / 570 !important"
+            id="ConCanvas"
+          >
+            <canvas id="plinkoCanvas" class="w-100 h-100"></canvas>
+            <div id="binsContainer" class="bins-row small w-100"></div>
+          </div>
+        </div>
+
+        <div class="panel" aria-live="polite">
+          <div class="label d-flex justify-content-between align-items-center">
+            <span>Balance</span><span id="balanceText">$100.00</span>
+          </div>
+          <div
+            class="d-flex justify-content-start flex-column input-group mt-2 pt-1 pt-lg-0"
+          >
+            <label class="form-label">Bet Amount:</label>
+            <input
+              type="number"
+              id="betInput"
+              min="1"
+              max="100"
+              step=".1"
+              value="0"
+            />
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-2">
+            <button id="halfBtn" class="mbtn" title="Half">½</button>
+            <button id="doubleBtn" class="mbtn" title="Double">2×</button>
+          </div>
+
+          <div class="d-flex justify-content-start flex-column mt-3">
+            <label class="form-label">Risk:</label>
+            <select id="riskSelect" class="custom-select">
+              <option value="LOW" selected>Low</option>
+              <option value="MEDIUM">Medium</option>
+              <option value="HIGH">High</option>
+            </select>
+          </div>
+
+          <div class="d-flex justify-content-start flex-column mt-3">
+            <label class="form-label">Row Count:</label>
+            <select id="rowSelect" class="custom-select">
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              s
+              <option>15</option>
+              <option selected>16</option>
+            </select>
+          </div>
+
+          <button id="betBtn" class="bet-btn mt-4" disabled>Bet</button>
+
+          <div class="meta d-none">
+            <div class="small">Last Win: <span id="lastWin">—</span></div>
+            <div class="small">Multiplier: <span id="multiplier">—</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <audio id="mclick" preload="auto">
+      <source src="assets/track/primary-btn.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="mping" preload="auto">
+      <source src="assets/track/ping.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="mwin" preload="auto">
+      <source src="assets/track/win.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio
+      id="bg-music"
+      src="./assets/track/music.mp3"
+      loop
+      autoplay
+      preload="auto"
+    ></audio>
+    <!-- bg sound play -->
+    <script>
+      const music = document.getElementById("bg-music");
+      music.volume = 0.7;
+
+      function enableSound() {
+        music.muted = false;
+        music.play();
+        window.removeEventListener("click", enableSound);
+        window.removeEventListener("keydown", enableSound);
+      }
+      window.addEventListener("click", enableSound);
+      window.addEventListener("keydown", enableSound);
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") {
+          music.play().catch(() => {});
+        } else {
+          music.pause();
+        }
+      });
+    </script>
+    <button
+      onclick="ShowHistory()"
+      class="d-lg-none openIconHistory d-flex justify-content-center align-items-center"
+    >
+      <i style="margin-top: 1px !important" class="fa fa-history"></i>
+    </button>
+
+    <script src="./assets/js/index.js"></script>
+  </body>
+</html>
