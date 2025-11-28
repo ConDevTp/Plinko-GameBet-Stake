@@ -107,3 +107,12 @@ Designed with **ultra-smooth animations, responsive UI, real betting logic, and 
 git clone https://github.com/ConDevTp/Plinko
 cd Plinko
 open index.html
+```
+<br/>
+<div align="center">
+
+📄 License
+<br/>
+<strong> MIT © ConDev </strong> 
+</div>
+
