@@ -1,4 +1,4 @@
-# 🎮 Plinko – Cyberpunk Edition
+# 🎮 Plinko
 
 **Plinko** – A futuristic, fully interactive Plinko game built with **HTML, CSS, JavaScript, jQuery, Canvas & Bootstrap**.  
 Designed with **ultra-smooth animations, responsive UI, real betting logic, and full customization**, perfect for portfolio showcase.
