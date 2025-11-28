@@ -104,8 +104,8 @@ Designed with **ultra-smooth animations, responsive UI, real betting logic, and 
 
 ## 🧩 Setup
 ```bash
-git clone https://github.com/ConDevTp/Plinko
-cd Plinko
+git clone https://github.com/ConDevTp/Plinko-GameBet-Stake.git
+cd Plinko-GameBet-Stake
 open index.html
 ```
 <br/>
